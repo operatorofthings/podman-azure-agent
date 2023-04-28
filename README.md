@@ -24,13 +24,16 @@ The podman-azure-agent is basically a containerized Microsoft Azure-Pipelines Ag
 
 
 ## Why?
-I am using Azure Pipelines and there was only an offical Microsoft "Docker" Task which worked well while the corresponding agent ran on a VM. Now my company moved that agent to containerized one which now runs on Kubernetes.
-The problem I faced was that if I still want to keep using the Microsoft "DockerV2" Task in my pipeline the new containerized agent should be able to understand Docker commands.
-But it's never a good idea to use Docker-in-Docker (DIND) in a productive Kubernetes environment (or anywhere else). So I tried my luck with podman and this is what you now see.
+Currently I am doing the first steps with Azure Pipelines at my company (topic: container baseimage building with ADO) and there was only one offical Microsoft "Docker" Task which worked well while the ado-agent ran on a simple Linux VM. Now we decided to move that ado-agent to a containerized one, which finally runs in a Kubernetes-based container runtime.
+The problem I faced during testing was that if I still want to keep using the Microsoft "DockerV2" Task in my Azure-Pipeline the new containerized agent must understand Docker commands.
+But since it's never a good idea to use Docker-in-Docker (DIND) in a productive Kubernetes environment (or anywhere else) I decided to use podman instead. So I tried my luck with podman and this is what you now see. It's far away from trivial work. This requires full insight on what happens within you podman-in-podman/docker environment. I do not have this full insight - not even close.
+So please be aware of this fact and use this with caution!
 
 ## Future
 I am building a PodmanV1 Task for Azure-Pipelines to get rid of the `podman-docker` package. If you are also interested in let me know.
 
+## DISCLAIMER
+Do not use this in production. I have no support for you :)
 
 ## Links that helped me for this repo
 - https://www.redhat.com/sysadmin/podman-inside-container
