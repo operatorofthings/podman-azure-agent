@@ -14,13 +14,13 @@ The podman-azure-agent is basically a containerized Microsoft Azure-Pipelines Ag
 ## Build Image and Run Container
 1. clone this repo
 2. `podman build -t podman-agent .` to build the podman-agent.
-  - `docker build -t podman-agent .` Docker works ofc as well to build your image 
+   - `docker build -t podman-agent .` Docker works ofc as well to build your image 
 3. Configure the agent:
-  - Open .envrc and fill out missing variables
-  - Source the environment variables from .envrc in this repo with `source <(cat .envrc)`
-    - If you have direnv just do a `direnv allow .` inside this repo
+   - Open .envrc and fill out missing variables
+   - Source the environment variables from .envrc in this repo with `source <(cat .envrc)`
+     - If you have direnv just do a `direnv allow .` inside this repo
 4. Run the agent `podman run -d --name=podman-agent --privileged --rm -e "AZP_POOL=${AZP_POOL:-Default}" -e "AZP_URL=$AZP_URL" -e "AZP_TOKEN=$AZP_TOKEN" -e "AZP_AGENT_NAME=$AZP_AGENT_NAME" podman-agent`
-  - You can also run the provided runAgent.sh script but there is no more magic
+   - You can also run the provided runAgent.sh script but there is no more magic
 
 
 ## Why?
