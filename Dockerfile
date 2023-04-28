@@ -47,7 +47,7 @@ RUN mkdir -p /var/lib/shared/overlay-images \
     touch /var/lib/shared/vfs-layers/layers.lock
 
 # Copy custom storage.conf file
-COPY storage.conf /etc/containers/storage.conf
+COPY assets/podman/storage.conf /etc/containers/storage.conf
 
 ENV _CONTAINERS_USERNS_CONFIGURED=""
 
@@ -61,7 +61,7 @@ ENV TARGETARCH=linux-x64
 WORKDIR /azp
 
 # edited start.sh to replace docker with podman commands
-COPY ./start.sh .
+COPY assets/ado/start.sh .
 RUN chmod +x start.sh
 
 ENTRYPOINT [ "./start.sh" ]
