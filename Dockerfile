@@ -1,7 +1,8 @@
-# Build an Ubuntu environment which servers an azure pipelines agent.
-# This image will contain podman.
-# This image should be run with --privileged.
-# If not podman will yell warnings at you.
+# Build an image containing an Ubuntu 23.04 environment which acts as an azure-pipelines agent.
+# This image will contain podman to manage containers within your azure-pipelines.
+# This image should be run with --privileged for a rootfull podman in rootfull container-environment.
+# This image could be run with --user=podman and --privileged for a rootless podman in a rootfull container-environment
+# Please be aware that podman will warn you if you do not use --privileged mode.
 FROM ubuntu:23.04
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get upgrade -y
@@ -14,12 +15,15 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y -qq --no-install-recommend
     iputils-ping \
     jq \
     lsb-release \
-    software-properties-common \
-    nano
+    software-properties-common
 
 ###### PODMAN #######
 
-RUN apt-get install -y -qq podman
+# podman-docker installed until I finish my work on PodmanV1 azure-pipelines Task.
+RUN apt-get install -y -qq podman podman-docker
+
+# This is only needed for podman-docker to suppress the 'Emulate Docker CLI using podman' message.
+RUN touch /etc/containers/nodocker
 
 RUN useradd podman && usermod --add-subuids 100000-165535 --add-subgids 100000-165535 podman
 
@@ -28,6 +32,7 @@ ARG _REPO_URL="https://raw.githubusercontent.com/containers/podman/main/contrib/
 ADD $_REPO_URL/containers.conf /etc/containers/containers.conf
 ADD $_REPO_URL/podman-containers.conf /home/podman/.config/containers/containers.conf
 
+# used for rootless in rootfull mode
 RUN mkdir -p /home/podman/.local/share/containers && \
     chown podman:podman -R /home/podman && \
     chmod 644 /etc/containers/containers.conf

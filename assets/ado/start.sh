@@ -89,8 +89,6 @@ trap 'cleanup; exit 143' TERM
 
 chmod +x ./run-docker.sh
 
-sed -i 's|docker|podman|g' run-docker.sh
-
 # To be aware of TERM and INT signals call run.sh
 # Running it with the --once flag at the end will shut down the agent after the build is executed
 ./run-docker.sh "$@" & wait $!
