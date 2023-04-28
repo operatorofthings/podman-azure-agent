@@ -32,4 +32,7 @@ But it's never a good idea to use Docker-in-Docker (DIND) in a productive Kubern
 I am building a PodmanV1 Task for Azure-Pipelines to get rid of the `podman-docker` package. If you are also interested in let me know.
 
 
-
+## Links that helped me for this repo
+- https://www.redhat.com/sysadmin/podman-inside-container
+- https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/docker?view=azure-devops
+- https://podman-desktop.io/docs/migrating-from-docker/emulating-docker-cli-with-podman
