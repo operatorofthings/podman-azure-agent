@@ -1,8 +1,8 @@
 # Build an image containing an Ubuntu 23.04 environment which acts as an azure-pipelines agent.
 # This image will contain podman to manage containers within your azure-pipelines.
-# This image should be run with --privileged for a rootfull podman in rootfull container-environment.
-# This image could be run with --user=podman and --privileged for a rootless podman in a rootfull container-environment
-# Please be aware that podman will warn you if you do not use --privileged mode.
+# This image should be run with --cap-add SYS_ADMIN --device /dev/fuse for a rootfull podman in rootfull container-environment.
+# This image could be run with --user=podman and --cap-add SYS_ADMIN --device /dev/fuse for a rootless podman in a rootfull container-environment
+# Please be aware that podman will warn you if you do not use --privileged or --cap-add SYS_ADMIN --device /dev/fuse mode.
 FROM ubuntu:23.04
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get upgrade -y
