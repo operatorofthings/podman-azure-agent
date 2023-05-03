@@ -15,12 +15,12 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y -qq --no-install-recommend
     iputils-ping \
     jq \
     lsb-release \
-    software-properties-common
+    software-properties-common \
+    podman \
+    fuse-overlayfs \
+    podman-docker
 
 ###### PODMAN #######
-
-# podman-docker installed until I finish my work on PodmanV1 azure-pipelines Task.
-RUN apt-get install -y -qq podman podman-docker
 
 # This is only needed for podman-docker to suppress the 'Emulate Docker CLI using podman' message.
 RUN touch /etc/containers/nodocker
