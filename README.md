@@ -1,4 +1,6 @@
 # podman-azure-agent
+![workflow](https://github.com/operatorofthings/podman-azure-agent/actions/workflows/docker-image.yml/badge.svg)
+
 The podman-azure-agent is basically a containerized Microsoft Azure-Pipelines Agent, which bases on Ubuntu:23.04 and uses podman (https://podman.io) to let you manage containers within your Azure-Pipelines (while already inside a container).
 
 ## Summary
