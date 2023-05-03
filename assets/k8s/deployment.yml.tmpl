@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: podman-agent
+spec:
+  selector:
+    matchLabels:
+      app: podman-agent
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: podman-agent
+    spec:
+      containers:
+      - name: podman-agent
+        image: IMAGE_NAME:IMAGE_TAG
+        command: ["sleep", "infinity"]
+        env:
+        - name: AZP_POOL
+          value: ${AZP_POOL:-Default}
+        - name: AZP_URL
+          value: "AZP_URL"
+        - name: AZP_TOKEN
+          value: "AZP_TOKEN"
+        - name: AZP_AGENT_NAME
+          value: "AZP_AGENT_NAME"
+        securityContext:
+          capabilities:
+            add:
+            - SYS_ADMIN
+          privileged: false
+        volumeMounts:
+        - name: fuse
+          mountPath: /dev/fuse
+      volumes:
+      - name: fuse
+        hostPath:
+          path: /dev/fuse
+
