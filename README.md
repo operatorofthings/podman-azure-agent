@@ -9,7 +9,7 @@ The podman-azure-agent is basically a containerized Microsoft Azure-Pipelines Ag
   - rootfull podman in rootfull podman/docker environment
   - rootless podman in rootfull podman/docker environment
 - Currently uses `podman-docker` to be able to "translate" Docker commands to podman
-  - (Only) Useful when using the Microsoft "DockerV2" Task in you Azure-Pipelines
+  - (Only) Useful when using the Microsoft "DockerV2" Task in your Azure-Pipelines
 
 ## Build Image and Run Container
 1. clone this repo
