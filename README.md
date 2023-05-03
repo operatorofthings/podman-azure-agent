@@ -19,12 +19,12 @@ The podman-azure-agent is basically a containerized Microsoft Azure-Pipelines Ag
    - Open .envrc and fill out missing variables
    - Source the environment variables from .envrc in this repo with `source <(cat .envrc)`
      - If you have direnv just do a `direnv allow .` inside this repo
-4. Run the agent `podman run -d --name=podman-agent --privileged --rm -e "AZP_POOL=${AZP_POOL:-Default}" -e "AZP_URL=$AZP_URL" -e "AZP_TOKEN=$AZP_TOKEN" -e "AZP_AGENT_NAME=$AZP_AGENT_NAME" podman-agent`
+4. Run the agent `podman run -d --name=podman-agent --cap-add SYS_ADMIN --device /dev/fuse --rm -e "AZP_POOL=${AZP_POOL:-Default}" -e "AZP_URL=$AZP_URL" -e "AZP_TOKEN=$AZP_TOKEN" -e "AZP_AGENT_NAME=$AZP_AGENT_NAME" podman-agent`
    - You can also run the provided runAgent.sh script but there is no more magic
 
 
 ## DISCLAIMER
-Do not use this in production. I have no support for you :)
+I recommend you to not use this in production unless you are totally aware of what you are doing.
 
 ## Links that helped me for this repo
 - https://www.redhat.com/sysadmin/podman-inside-container
