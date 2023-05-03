@@ -22,6 +22,9 @@ The podman-azure-agent is basically a containerized Microsoft Azure-Pipelines Ag
 4. Run the agent `podman run -d --name=podman-agent --cap-add SYS_ADMIN --device /dev/fuse --rm -e "AZP_POOL=${AZP_POOL:-Default}" -e "AZP_URL=$AZP_URL" -e "AZP_TOKEN=$AZP_TOKEN" -e "AZP_AGENT_NAME=$AZP_AGENT_NAME" podman-agent`
    - You can also run the provided runAgent.sh script but there is no more magic
 
+## Dockerhub
+The built image is available at Dockerhub.
+`docker pull staynerzone/podman-azure-agent:latest`
 
 ## DISCLAIMER
 I recommend you to not use this in production unless you are totally aware of what you are doing.
